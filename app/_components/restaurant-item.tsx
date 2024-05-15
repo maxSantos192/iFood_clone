@@ -3,6 +3,7 @@ import { BikeIcon, HeartIcon, StarIcon, TimerIcon } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "../_helpers/price";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface RestaurantProps {
   restaurant: Restaurant;
@@ -12,12 +13,14 @@ const RestaurantItem = ({ restaurant }: RestaurantProps) => {
   return (
     <div className="min-w-[266px] max-w-[266px]">
       <div className="relative h-[136px] w-full">
-        <Image
-          src={restaurant.imageUrl}
-          alt={restaurant.name}
-          fill
-          className="rounded-lg object-cover"
-        />
+        <Link href={`/restaurants/${restaurant.id}`}>
+          <Image
+            src={restaurant.imageUrl}
+            alt={restaurant.name}
+            fill
+            className="rounded-lg object-cover"
+          />
+        </Link>
 
         <div className="absolute left-2 top-2 flex items-center gap-[2px] rounded-full bg-primary bg-white px-2 py-[2px]">
           <StarIcon size={12} className="fill-yellow-400 text-yellow-400" />
