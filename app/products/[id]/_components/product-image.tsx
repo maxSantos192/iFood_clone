@@ -24,9 +24,9 @@ const ProductImage = ({ product }: ProductImageProps) => {
         className="object-cover"
       />
       <Button
-        className="absolute left-4 top-4 rounded-full border border-solid border-muted-foreground bg-white text-foreground hover:text-white"
         size={"icon"}
         onClick={handleBackClick}
+        className="absolute left-4 top-4 rounded-full border border-solid border-muted-foreground bg-white text-foreground hover:text-white"
       >
         <ChevronLeftIcon />
       </Button>

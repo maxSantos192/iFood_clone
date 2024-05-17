@@ -11,6 +11,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/app/_components/ui/sheet";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/app/_components/ui/alert-dialog";
+
 import { CartContext } from "@/app/_contexts/cart";
 import {
   calculateProductTotalPrice,
@@ -40,11 +51,27 @@ const ProductDetail = ({
 }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [isCardOpen, setIsCardOpen] = useState(false);
-  const { addProductToCart } = useContext(CartContext);
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
+    useState(false);
+  const { addProductToCart, products } = useContext(CartContext);
+
+  const addToCart = ({ emptyCart = false }: { emptyCart?: boolean }) => {
+    addProductToCart({ product, quantity, emptyCart });
+    setIsCardOpen(true);
+  };
 
   const handleAddToCartClick = () => {
-    addProductToCart(product, quantity);
-    setIsCardOpen(true);
+    const hasDifferentRestaurantProduct = products.some(
+      (cartProduct) => cartProduct.restaurantId !== product.restaurantId,
+    );
+
+    if (hasDifferentRestaurantProduct) {
+      return setIsConfirmationDialogOpen(true);
+    }
+
+    addToCart({
+      emptyCart: false,
+    });
   };
 
   const handleIncreaseQuantityClick = () =>
@@ -58,7 +85,7 @@ const ProductDetail = ({
 
   return (
     <>
-      <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white py-5">
+      <div className="relative mt-[-1.5rem] rounded-t-3xl bg-white py-5">
         <div className="flex items-center gap-[0.375rem] px-5">
           <div className="relative h-6 w-6">
             <Image
@@ -78,7 +105,6 @@ const ProductDetail = ({
 
         <div className="flex justify-between px-5">
           <div>
-            {/*DICOUNT PRICE*/}
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold">
                 {formatCurrency(calculateProductTotalPrice(product))}
@@ -88,7 +114,6 @@ const ProductDetail = ({
               )}
             </div>
 
-            {/*ORIGINAL PRICE */}
             {product.discountPercentage > 0 && (
               <p className="text-sm text-muted-foreground">
                 De: {formatCurrency(Number(product.price))}
@@ -96,7 +121,6 @@ const ProductDetail = ({
             )}
           </div>
 
-          {/*AMOUNT*/}
           <div className="flex items-center gap-3 text-center">
             <Button
               size={"icon"}
@@ -145,6 +169,28 @@ const ProductDetail = ({
           <Cart />
         </SheetContent>
       </Sheet>
+
+      <AlertDialog
+        open={isConfirmationDialogOpen}
+        onOpenChange={setIsConfirmationDialogOpen}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Notamos que sua sacola não está vazia!
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Você só pode adicionar pedidos de um restaurante por vez.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => addToCart({ emptyCart: true })}>
+              Esvaziar sacola e continuar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
