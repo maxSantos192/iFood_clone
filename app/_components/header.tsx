@@ -96,10 +96,13 @@ const Header = () => {
                 <>
                   <Button
                     variant={"ghost"}
+                    asChild
                     className="font- w-full justify-start space-x-3 rounded-full text-sm"
                   >
-                    <ScrollTextIcon size={16} />
-                    <span>Meus Pedidos</span>
+                    <Link href={"/my-orders"}>
+                      <ScrollTextIcon size={16} />
+                      <span>Meus Pedidos</span>
+                    </Link>
                   </Button>
 
                   <Button
