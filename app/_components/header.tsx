@@ -21,8 +21,20 @@ import {
 } from "./ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "@radix-ui/react-separator";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "./ui/alert-dialog";
+import { useState } from "react";
 
 const Header = () => {
+  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const { data } = useSession();
 
   const handleSignOut = () => signOut();
@@ -123,7 +135,7 @@ const Header = () => {
             {data?.user && (
               <Button
                 variant={"ghost"}
-                onClick={handleSignOut}
+                onClick={() => setIsConfirmDialogOpen(true)}
                 className="font- w-full justify-start space-x-3 rounded-full text-sm"
               >
                 <LogOutIcon />
@@ -133,6 +145,24 @@ const Header = () => {
           </div>
         </SheetContent>
       </Sheet>
+
+      <AlertDialog
+        open={isConfirmDialogOpen}
+        onOpenChange={setIsConfirmDialogOpen}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Sair da conta</AlertDialogTitle>
+            <AlertDialogDescription>
+              Deseja mesmo sair da plataforma?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleSignOut}>Sair</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
