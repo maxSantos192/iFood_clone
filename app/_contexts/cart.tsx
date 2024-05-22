@@ -35,7 +35,9 @@ interface ICartContext {
       include: {
         restaurant: {
           select: {
+            id: true;
             deliveryFee: true;
+            deliveryTimeMinutes: true;
           };
         };
       };
