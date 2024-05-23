@@ -5,7 +5,6 @@ import { Card, CardContent } from "./ui/card";
 import { formatCurrency } from "../_helpers/price";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import Image from "next/image";
 import { OrderStatus } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { createOrder } from "../_actions/order";
@@ -22,6 +21,7 @@ import {
 } from "./ui/alert-dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import EmptyItem from "./empty-item";
 
 interface CartProps {
   // eslint-disable-next-line no-unused-vars
@@ -146,14 +146,9 @@ const Cart = ({ setIsOpen }: CartProps) => {
           </>
         ) : (
           <div className="flex h-full flex-col items-center justify-center space-y-5">
-            <span className="text-muted-foreground">
-              Sua sacola está vazia!
-            </span>
-            <Image
-              src={"/model-confused.png"}
-              alt="Sacola vazia"
-              width={200}
-              height={200}
+            <EmptyItem
+              textInformation="Sua sacola está vazia!"
+              altImage="Sacola vazia"
             />
           </div>
         )}

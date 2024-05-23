@@ -4,7 +4,7 @@ import { authOptions } from "../_lib/auth";
 import { redirect } from "next/navigation";
 import Header from "../_components/header";
 import OrderItem from "./_components/order-item";
-import Image from "next/image";
+import EmptyItem from "../_components/empty-item";
 
 const MyOrderPage = async () => {
   const session = await getServerSession(authOptions);
@@ -44,15 +44,10 @@ const MyOrderPage = async () => {
             ))}
           </div>
         ) : (
-          <div className="flex h-[70vh] flex-col items-center justify-center space-y-5">
-            <span className="text-muted-foreground">
-              Você ainda não fez nenhum pedido.
-            </span>
-            <Image
-              src={"/model-confused.png"}
-              alt="Nenhum pedido"
-              width={200}
-              height={200}
+          <div className="flex h-full flex-col items-center justify-center space-y-5">
+            <EmptyItem
+              textInformation="Você ainda não fez nenhum pedido."
+              altImage="Lista de pedidos vazia."
             />
           </div>
         )}
