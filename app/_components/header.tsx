@@ -41,7 +41,7 @@ const Header = () => {
   const handleSignIn = () => signIn();
 
   return (
-    <div className="flex items-center justify-between px-5 pt-6">
+    <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 pt-6">
       <div className="relative h-[40px] w-[80px]">
         <Link href={"/"}>
           <Image src="/logo.png" alt="iFood logo" fill />
