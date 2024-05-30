@@ -1,6 +1,5 @@
 import CategoryList from "./_components/category-list";
 import Header from "./_components/header";
-import Search from "./_components/search";
 import ProductList from "./_components/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
@@ -8,6 +7,8 @@ import { db } from "./_lib/prisma";
 import PromoBanner from "./_components/promo-banner";
 import RestaurantList from "./_components/restaurant-list";
 import Link from "next/link";
+import HeroSection from "./_components/hero-section";
+import Search from "./_components/search";
 
 const fetch = async () => {
   const getProducts = db.product.findMany({
@@ -58,7 +59,8 @@ const Home = async () => {
     <>
       <Header />
       <div className="pt-6">
-        <Search />
+        <HeroSection />
+        <Search className="md:hidden" />
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-5 pt-6">
