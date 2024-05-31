@@ -1,5 +1,4 @@
 import CategoryList from "./_components/category-list";
-import Header from "./_components/header";
 import ProductList from "./_components/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
@@ -57,10 +56,9 @@ const Home = async () => {
 
   return (
     <>
-      <Header />
-      <div className="pt-6">
+      <div>
         <HeroSection />
-        <Search className="md:hidden" />
+        <Search className="px-5 md:hidden" />
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-5 pt-6">

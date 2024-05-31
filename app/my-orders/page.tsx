@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth";
 import { db } from "../_lib/prisma";
 import { authOptions } from "../_lib/auth";
 import { redirect } from "next/navigation";
-import Header from "../_components/header";
 import OrderItem from "./_components/order-item";
 import EmptyItem from "../_components/empty-item";
 
@@ -32,8 +31,6 @@ const MyOrderPage = async () => {
 
   return (
     <>
-      <Header />
-
       <div className="px-5 py-6">
         <h2 className="pb-6 text-lg font-semibold">Meus Pedidos</h2>
 

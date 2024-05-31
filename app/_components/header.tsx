@@ -32,20 +32,35 @@ import {
   AlertDialogTitle,
 } from "./ui/alert-dialog";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Search from "./search";
 
 const Header = () => {
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const { data } = useSession();
+  const pathname = usePathname();
+
+  const isHomePage = pathname === "/";
+  const isRestaurantPage = pathname.startsWith("/restaurants");
+  const isProductPage = pathname.startsWith("/products");
+
+  const isSpecialPage = isRestaurantPage || isProductPage;
 
   const handleSignOut = () => signOut();
   const handleSignIn = () => signIn();
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 pt-6">
+    <div
+      className={`mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 ${isSpecialPage && "hidden md:flex"}`}
+    >
       <div className="relative h-[40px] w-[80px]">
         <Link href={"/"}>
           <Image src="/logo.png" alt="iFood logo" fill />
         </Link>
+      </div>
+
+      <div className="px-5 md:w-[35rem]">
+        {!isHomePage && <Search className="hidden md:flex" />}
       </div>
 
       <Sheet>

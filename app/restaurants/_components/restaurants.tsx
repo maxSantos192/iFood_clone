@@ -4,7 +4,6 @@ import { Restaurant, UserFavoriteRestaurant } from "@prisma/client";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { searchForRestaurants } from "../_actions/search";
-import Header from "@/app/_components/header";
 import RestaurantItem from "@/app/_components/restaurant-item";
 
 interface RestaurantProps {
@@ -34,7 +33,6 @@ const Restaurants = ({ userFavoritesRestaurants }: RestaurantProps) => {
 
   return (
     <>
-      <Header />
       <div className="px-5 py-6">
         <h2 className="mb-6 text-lg font-semibold">
           Restaurantes Recomendados

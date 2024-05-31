@@ -3,7 +3,6 @@ import { db } from "../_lib/prisma";
 import { authOptions } from "../_lib/auth";
 import { notFound } from "next/navigation";
 import RestaurantItem from "../_components/restaurant-item";
-import Header from "../_components/header";
 import EmptyItem from "../_components/empty-item";
 
 const MyFavoriteRestaurants = async () => {
@@ -24,7 +23,6 @@ const MyFavoriteRestaurants = async () => {
 
   return (
     <>
-      <Header />
       <div className="px-5 py-6">
         <h2 className="mb-6 text-lg font-semibold">Restaurantes Favoritos</h2>
         <div className="flex flex-col gap-6">
