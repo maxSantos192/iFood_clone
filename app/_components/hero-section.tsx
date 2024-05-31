@@ -11,7 +11,7 @@ const HeroSection = () => {
             Com apenas alguns cliques, encontre refeições acessíveis perto de
             você.
           </p>
-          <Search />
+          <Search className="bg-white p-6" />
         </div>
         <div className="relative hidden h-72 w-80 items-end md:flex">
           <Image

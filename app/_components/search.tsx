@@ -30,7 +30,7 @@ const Search = ({ className }: SearchProps) => {
   return (
     <form
       onSubmit={handleSearchSubmit}
-      className={cn("flex gap-2 rounded-xl bg-white p-6", className)}
+      className={cn("flex gap-2 rounded-xl bg-white", className)}
     >
       <Input
         placeholder="Buscar Restaurantes"
