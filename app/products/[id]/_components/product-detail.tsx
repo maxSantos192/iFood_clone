@@ -110,7 +110,7 @@ const ProductDetail = ({
                 {formatCurrency(calculateProductTotalPrice(product))}
               </h2>
               {product.discountPercentage > 0 && (
-                <DiscountBadge product={product} />
+                <DiscountBadge product={JSON.parse(JSON.stringify(product))} />
               )}
             </div>
 
