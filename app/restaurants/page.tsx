@@ -14,7 +14,11 @@ const RestaurantsPage = async () => {
 
   return (
     <Suspense>
-      <Restaurants userFavoritesRestaurants={userFavoritesRestaurants} />
+      <Restaurants
+        userFavoritesRestaurants={JSON.parse(
+          JSON.stringify(userFavoritesRestaurants),
+        )}
+      />
     </Suspense>
   );
 };

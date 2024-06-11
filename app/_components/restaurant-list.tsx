@@ -20,7 +20,9 @@ const RestaurantList = async () => {
         <RestaurantItem
           key={restaurant.id}
           restaurant={JSON.parse(JSON.stringify(restaurant))}
-          userFavoritesRestaurants={userFavoritesRestaurants}
+          userFavoritesRestaurants={JSON.parse(
+            JSON.stringify(userFavoritesRestaurants),
+          )}
         />
       ))}
     </div>

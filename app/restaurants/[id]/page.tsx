@@ -68,7 +68,9 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
       <div className="justify-center gap-4 md:flex">
         <RestaurantImage
           restaurant={JSON.parse(JSON.stringify(restaurant))}
-          userFavoritesRestaurants={userFavoritesRestaurants}
+          userFavoritesRestaurants={JSON.parse(
+            JSON.stringify(userFavoritesRestaurants),
+          )}
         />
 
         <RestaurantInfo restaurant={JSON.parse(JSON.stringify(restaurant))} />

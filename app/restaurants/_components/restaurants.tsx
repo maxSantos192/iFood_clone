@@ -44,7 +44,9 @@ const Restaurants = ({ userFavoritesRestaurants }: RestaurantProps) => {
               <RestaurantItem
                 key={restaurant.id}
                 restaurant={JSON.parse(JSON.stringify(restaurant))}
-                userFavoritesRestaurants={userFavoritesRestaurants}
+                userFavoritesRestaurants={JSON.parse(
+                  JSON.stringify(userFavoritesRestaurants),
+                )}
                 className="min-w-full max-w-full"
               />
             ))
