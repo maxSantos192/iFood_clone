@@ -37,7 +37,10 @@ const MyOrderPage = async () => {
         {orders.length > 0 ? (
           <div className="space-y-3">
             {orders.map((order) => (
-              <OrderItem key={order.id} order={order} />
+              <OrderItem
+                key={order.id}
+                order={JSON.parse(JSON.stringify(order))}
+              />
             ))}
           </div>
         ) : (
