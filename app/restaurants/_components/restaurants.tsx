@@ -5,6 +5,7 @@ import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { searchForRestaurants } from "../_actions/search";
 import RestaurantItem from "@/app/_components/restaurant-item";
+import EmptyItem from "@/app/_components/empty-item";
 
 interface RestaurantProps {
   userFavoritesRestaurants: UserFavoriteRestaurant[];
@@ -38,14 +39,23 @@ const Restaurants = ({ userFavoritesRestaurants }: RestaurantProps) => {
           Restaurantes Recomendados
         </h2>
         <div className="flex flex-col gap-6">
-          {restaurants.map((restaurant) => (
-            <RestaurantItem
-              key={restaurant.id}
-              restaurant={JSON.parse(JSON.stringify(restaurant))}
-              userFavoritesRestaurants={userFavoritesRestaurants}
-              className="min-w-full max-w-full"
-            />
-          ))}
+          {restaurants.length > 0 ? (
+            restaurants.map((restaurant) => (
+              <RestaurantItem
+                key={restaurant.id}
+                restaurant={JSON.parse(JSON.stringify(restaurant))}
+                userFavoritesRestaurants={userFavoritesRestaurants}
+                className="min-w-full max-w-full"
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center">
+              <EmptyItem
+                textInformation="Nenhum restaurante encontrado!"
+                altImage="Nenhum restaurante encontrado."
+              />
+            </div>
+          )}
         </div>
       </div>
     </>
