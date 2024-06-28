@@ -76,7 +76,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
   return (
     <>
-      <div className="relative mt-[-1.5rem] rounded-t-3xl bg-white py-5">
+      <div className="relative mt-[-1.5rem] rounded-t-3xl bg-white py-5 md:mt-0 md:bg-transparent">
         <div className="flex items-center gap-[0.375rem] px-5">
           <div className="relative h-6 w-6">
             <Image
